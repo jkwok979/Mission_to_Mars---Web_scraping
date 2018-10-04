@@ -7,7 +7,7 @@ from splinter import Browser
 
 def init_browser():
     executable_path = {"executable_path": "chromedriver.exe"}
-    return Browser("chrome", **executable_path, headless=True)
+    return Browser("chrome", headless=True)
 
 def scrape ():
     """Scrapes various websites for information about Mars, and returns data in a dictionary"""
@@ -46,7 +46,7 @@ def scrape ():
         img_relative = jpl_soup.find('img', class_='fancybox-image')['src']
         image_path = f'https://www.jpl.nasa.gov{img_relative}'
         mars_data["feature_image_src"] = image_path
-    except ElementNotVisibleException:
+    except:
         image_path = 'https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA22076_hires.jpg'
         mars_data["feature_image_src"] = image_path
         
